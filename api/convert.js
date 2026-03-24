@@ -1,3 +1,19 @@
+// 【新規追加】法人略語マップ（全銀協の標準ルールに基づく）
+const corpMap = {
+  '株式会社': 'ｶ)',
+  '（株）': 'ｶ)',
+  '(株)': 'ｶ)',
+  '有限会社': 'ﾕ)',
+  '（有）': 'ﾕ)',
+  '(有)': 'ﾕ)',
+  '合同会社': 'ﾄﾞ)',
+  '合名会社': 'ﾒｲ)',
+  '合資会社': 'ｼ)',
+  '医療法人': 'ｲ)',
+  '財団法人': 'ｻﾞｲ)',
+  '社団法人': 'ｼﾔ)'
+};
+
 // 全角カタカナ→半角カタカナ変換マップ（濁点・半濁点分離対応）
 const kanaMap = {
   'ガ': 'ｶﾞ', 'ギ': 'ｷﾞ', 'グ': 'ｸﾞ', 'ゲ': 'ｹﾞ', 'ゴ': 'ｺﾞ',
@@ -38,8 +54,16 @@ export default function handler(req, res) {
   }
 
   try {
+    let converted = text;
+
+    // 0. 法人略語の自動変換（漢字が消去される前に、真っ先に実行する）
+    for (const [key, value] of Object.entries(corpMap)) {
+      // 該当する法人名（例：株式会社）を見つけたら、略語（例：ｶ) ）に置き換える
+      converted = converted.split(key).join(value);
+    }
+
     // 1. 全角英数字を半角に変換
-    let converted = text.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+    converted = converted.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
       return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
     });
 
@@ -51,13 +75,13 @@ export default function handler(req, res) {
       return kanaMap[match] || match;
     });
 
-    // 4. 全銀フォーマットで使用できない不正な記号（半角カナ、英数字、指定記号以外）を削除
-    // ※今回は安全のため、ハイフン、ピリオド、カッコなどは残し、それ以外の不要な全角文字等を消去
+    // 4. 全銀フォーマットで使用できない不正な記号（漢字・ひらがな等）を削除
+    // ※ ｶ) のカッコ「)」が消されないように、許可リストに入れています
     converted = converted.replace(/[^ｱ-ﾝﾞﾟｧ-ｫｬ-ｮｯｰA-Z0-9\-\.\(\)\/\\ \n]/g, '');
 
     res.status(200).json({
       success: true,
-      message: 'Zenfix: 全銀フォーマットへの最適化に成功しました。',
+      message: 'Zenfix: 法人略語変換を含む全銀フォーマット最適化に成功しました。',
       original_text: text,
       converted_text: converted,
     });

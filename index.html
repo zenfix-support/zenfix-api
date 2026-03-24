@@ -49,7 +49,10 @@
         // 同じサーバー内にある私達のAPI（/api/convert）を呼び出す
         const response = await fetch('/api/convert', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'x-api-key': 'zenfix_demo_key' // ←この1行を追加してコンマ(,)で区切る
+          },
           body: JSON.stringify({ text: text })
         });
         

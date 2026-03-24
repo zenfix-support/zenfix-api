@@ -1,5 +1,26 @@
+// 全角カタカナ→半角カタカナ変換マップ（濁点・半濁点分離対応）
+const kanaMap = {
+  'ガ': 'ｶﾞ', 'ギ': 'ｷﾞ', 'グ': 'ｸﾞ', 'ゲ': 'ｹﾞ', 'ゴ': 'ｺﾞ',
+  'ザ': 'ｻﾞ', 'ジ': 'ｼﾞ', 'ズ': 'ｽﾞ', 'ゼ': 'ｾﾞ', 'ゾ': 'ｿﾞ',
+  'ダ': 'ﾀﾞ', 'ヂ': 'ﾁﾞ', 'ヅ': 'ﾂﾞ', 'デ': 'ﾃﾞ', 'ド': 'ﾄﾞ',
+  'バ': 'ﾊﾞ', 'ビ': 'ﾋﾞ', 'ブ': 'ﾌﾞ', 'ベ': 'ﾍﾞ', 'ボ': 'ﾎﾞ',
+  'パ': 'ﾊﾟ', 'ピ': 'ﾋﾟ', 'プ': 'ﾌﾟ', 'ペ': 'ﾍﾟ', 'ポ': 'ﾎﾟ',
+  'ヴ': 'ｳﾞ', 'ア': 'ｱ', 'イ': 'ｲ', 'ウ': 'ｳ', 'エ': 'ｴ', 'オ': 'ｵ',
+  'カ': 'ｶ', 'キ': 'ｷ', 'ク': 'ｸ', 'ケ': 'ｹ', 'コ': 'ｺ',
+  'サ': 'ｻ', 'シ': 'ｼ', 'ス': 'ｽ', 'セ': 'ｾ', 'ソ': 'ｿ',
+  'タ': 'ﾀ', 'チ': 'ﾁ', 'ツ': 'ﾂ', 'テ': 'ﾃ', 'ト': 'ﾄ',
+  'ナ': 'ﾅ', 'ニ': 'ﾆ', 'ヌ': 'ﾇ', 'ネ': 'ﾈ', 'ノ': 'ﾉ',
+  'ハ': 'ﾊ', 'ヒ': 'ﾋ', 'フ': 'ﾌ', 'ヘ': 'ﾍ', 'ホ': 'ﾎ',
+  'マ': 'ﾏ', 'ミ': 'ﾐ', 'ム': 'ﾑ', 'メ': 'ﾒ', 'モ': 'ﾓ',
+  'ヤ': 'ﾔ', 'ユ': 'ﾕ', 'ヨ': 'ﾖ',
+  'ラ': 'ﾗ', 'リ': 'ﾘ', 'ル': 'ﾙ', 'レ': 'ﾚ', 'ロ': 'ﾛ',
+  'ワ': 'ﾜ', 'ヲ': 'ｦ', 'ン': 'ﾝ',
+  'ァ': 'ｧ', 'ィ': 'ｨ', 'ゥ': 'ｩ', 'ェ': 'ｪ', 'ォ': 'ｫ',
+  'ッ': 'ｯ', 'ャ': 'ｬ', 'ュ': 'ｭ', 'ョ': 'ｮ',
+  'ー': 'ｰ', '、': '､', '。': '｡', '・': '･', '「': '｢', '」': '｣', '　': ' ' // 全角スペースは半角スペースに
+};
+
 export default function handler(req, res) {
-  // セキュリティ（CORS）設定：外部システムからのアクセスを許可
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -7,29 +28,40 @@ export default function handler(req, res) {
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
-
-  // POST（データ送信）以外はエラーを返す
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'POSTメソッドのみ許可されています' });
   }
 
-  // 送られてきたデータを受け取る
   const { text } = req.body;
   if (!text) {
     return res.status(400).json({ error: '変換するテキスト(text)が送信されていません' });
   }
 
-  // 【Zenfix コア機能（MVP版）】
-  // 全銀フォーマットの第一歩として、全角英数字を「半角」に自動変換する機能
-  const convertedText = text.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-  });
+  try {
+    // 1. 全角英数字を半角に変換
+    let converted = text.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+      return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+    });
 
-  // 綺麗に整形したデータを返す
-  res.status(200).json({
-    success: true,
-    message: 'Zenfix: 変換に成功しました。',
-    original_text: text,
-    converted_text: convertedText,
-  });
+    // 2. 全銀ルールの基本：英字はすべて「大文字」に統一
+    converted = converted.toUpperCase();
+
+    // 3. 全角カタカナ・記号を半角カタカナに変換（濁点分離）
+    converted = converted.replace(/[ァ-ンヴー、。・「」　]/g, function(match) {
+      return kanaMap[match] || match;
+    });
+
+    // 4. 全銀フォーマットで使用できない不正な記号（半角カナ、英数字、指定記号以外）を削除
+    // ※今回は安全のため、ハイフン、ピリオド、カッコなどは残し、それ以外の不要な全角文字等を消去
+    converted = converted.replace(/[^ｱ-ﾝﾞﾟｧ-ｫｬ-ｮｯｰA-Z0-9\-\.\(\)\/\\ \n]/g, '');
+
+    res.status(200).json({
+      success: true,
+      message: 'Zenfix: 全銀フォーマットへの最適化に成功しました。',
+      original_text: text,
+      converted_text: converted,
+    });
+  } catch (error) {
+    res.status(500).json({ error: '変換処理中にエラーが発生しました' });
+  }
 }

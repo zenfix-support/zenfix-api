@@ -12,20 +12,20 @@
   <header class="bg-white sticky top-0 z-50 border-b border-gray-100">
     <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <span class="text-3xl font-extrabold text-navy-900 tracking-tight">Zenfix</span>
+        <span class="text-3xl font-extrabold text-slate-900 tracking-tight">Zenfix</span>
         <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-0.5 rounded-full">API</span>
       </div>
       <div class="flex items-center gap-6 text-sm font-medium text-gray-700">
         <a href="#features" class="hover:text-blue-600 transition">特徴</a>
         <a href="#demo" class="hover:text-blue-600 transition">無料デモ</a>
         <a href="#pricing" class="hover:text-blue-600 transition">料金</a>
-        <a href="https://dashboard.stripe.com/test/dashboard" target="_blank" class="bg-navy-900 hover:bg-navy-800 text-white font-bold py-2.5 px-6 rounded text-xs transition">導入相談（Stripeへ）</a>
+        <a href="https://buy.stripe.com/test_28E14n3RG01k0f378p6wE00" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-6 rounded text-xs transition">導入相談（Stripeへ）</a>
       </div>
     </nav>
   </header>
 
   <main>
-    <section class="bg-navy-900 text-white py-24 px-6">
+    <section class="bg-slate-900 text-white py-24 px-6">
       <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div>
           <h1 class="text-5xl font-extrabold leading-tight tracking-tight">
@@ -43,10 +43,12 @@
             </a>
           </div>
         </div>
-        <div class="bg-white/5 p-10 rounded-2xl border border-white/10 flex items-center justify-center">
-          <div class="w-full h-80 bg-navy-800 rounded-lg flex items-center justify-center text-navy-700 font-mono text-sm p-4">
-            [ 全銀データ変換のイメージイラスト ]<br>
-            全角文字 → [ Zenfix API ] → 完璧な半角データ
+        <div class="bg-white/5 p-10 rounded-2xl border border-white/10 flex items-center justify-center shadow-2xl">
+          <div class="w-full h-80 bg-slate-800 rounded-lg flex flex-col items-center justify-center text-slate-300 font-mono text-sm p-6 text-center border border-slate-700">
+            <p class="text-blue-400 mb-4">&lt;!-- Zenfix API 変換イメージ --&gt;</p>
+            <p class="bg-slate-900 p-3 rounded w-full mb-4">株式会社ゼンフィックス　ガ</p>
+            <p class="text-2xl text-slate-500 mb-4">↓</p>
+            <p class="bg-blue-900/50 text-blue-200 border border-blue-500/30 p-3 rounded w-full">ｶ)ｾﾞﾝﾌｨｯｸｽ ｶﾞ</p>
           </div>
         </div>
       </div>
@@ -56,52 +58,35 @@
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
           <p class="text-blue-600 font-bold uppercase tracking-wide">features</p>
-          <h2 class="mt-3 text-4xl font-extrabold text-navy-900">
+          <h2 class="mt-3 text-4xl font-extrabold text-slate-900">
             法人のシステムに、プロレベルの変換精度を。
           </h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-white p-10 rounded-xl shadow-sm border border-gray-100">
+          <div class="bg-white p-10 rounded-xl shadow-sm border border-gray-100 transition hover:shadow-md">
             <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-3xl mb-8">✅</div>
-            <h3 class="text-2xl font-bold text-navy-900">完璧な半角カナ・濁点分離</h3>
+            <h3 class="text-2xl font-bold text-slate-900">完璧な半角カナ・濁点分離</h3>
             <p class="mt-4 text-gray-600 leading-relaxed">全角カナの半角化はもちろん、全銀ルールで最もやっかいな「ガ」→「ｶ」「ﾞ」への濁点分離を完璧に行います。</p>
           </div>
-          <div class="bg-white p-10 rounded-xl shadow-sm border border-gray-100">
+          <div class="bg-white p-10 rounded-xl shadow-sm border border-gray-100 transition hover:shadow-md">
             <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-3xl mb-8">🏢</div>
-            <h3 class="text-2xl font-bold text-navy-900">法人略語の自動変換</h3>
+            <h3 class="text-2xl font-bold text-slate-900">法人略語の自動変換</h3>
             <p class="mt-4 text-gray-600 leading-relaxed">株式会社を「ｶ)」、有限会社を「ﾕ)」へ自動変換。銀行の略語ルールを理解した賢いAPIです。</p>
           </div>
-          <div class="bg-white p-10 rounded-xl shadow-sm border border-gray-100">
+          <div class="bg-white p-10 rounded-xl shadow-sm border border-gray-100 transition hover:shadow-md">
             <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-3xl mb-8">🔒</div>
-            <h3 class="text-2xl font-bold text-navy-900">APIキーでセキュアに管理</h3>
+            <h3 class="text-2xl font-bold text-slate-900">APIキーでセキュアに管理</h3>
             <p class="mt-4 text-gray-600 leading-relaxed">契約企業ごとに専用のAPIキーを発行。無断利用を防ぎ、セキュアに社内システムへ組み込めます。</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="py-24 px-6 bg-white border-y border-gray-100">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div class="bg-gray-50 p-12 rounded-2xl border border-gray-100 text-center">
-          <p class="text-red-600 font-bold uppercase tracking-wide">Before</p>
-          <h3 class="mt-3 text-2xl font-bold text-gray-900">手作業による修正地獄</h3>
-          <p class="mt-4 text-gray-600">CSVをエクセルで開き、関数を駆使して変換。結局エラーが出て銀行から突き返される...</p>
-          <div class="mt-8 text-6xl text-gray-300">😩</div>
-        </div>
-        <div class="bg-blue-50/50 p-12 rounded-2xl border border-blue-100 text-center">
-          <p class="text-blue-600 font-bold uppercase tracking-wide">After (with Zenfix)</p>
-          <h3 class="mt-3 text-2xl font-bold text-navy-900">APIで0秒・完全自動化</h3>
-          <p class="mt-4 text-gray-600">システムからZenfix APIへデータを送信するだけ。完璧な半角データが即座に返ってきます。</p>
-          <div class="mt-8 text-6xl text-blue-600">😎</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="demo" class="py-24 px-6 bg-gray-50">
+    <section id="demo" class="py-24 px-6 bg-white border-y border-gray-100">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
           <p class="text-blue-600 font-bold uppercase tracking-wide">demo</p>
-          <h2 class="mt-3 text-4xl font-extrabold text-navy-900">
+          <h2 class="mt-3 text-4xl font-extrabold text-slate-900">
             無料デモ：変換精度を試す
           </h2>
           <p class="mt-4 text-lg text-gray-600">
@@ -109,8 +94,8 @@
           </p>
         </div>
         
-        <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-          <textarea id="inputText" rows="5" class="w-full border border-gray-200 rounded-lg p-4 focus:ring-2 focus:ring-blue-200 focus:border-blue-500 text-lg" placeholder="ここに全角文字（例：株式会社ゼンフィックス　１２３４ガ）を入力してください"></textarea>
+        <div class="bg-gray-50 p-8 rounded-2xl shadow-inner border border-gray-200">
+          <textarea id="inputText" rows="4" class="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg shadow-sm" placeholder="株式会社ゼンフィックス　１２３４ガ"></textarea>
           
           <div class="mt-6 text-center">
             <button id="convertBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-12 rounded-full text-lg transition duration-300 shadow-md">
@@ -118,31 +103,31 @@
             </button>
           </div>
 
-          <div class="mt-8 pt-8 border-t border-gray-100 overflow-x-auto">
+          <div class="mt-8 pt-8 border-t border-gray-200">
             <h3 class="text-sm font-semibold text-gray-500 mb-3">変換結果</h3>
-            <textarea id="outputText" rows="5" class="w-full bg-gray-50 border border-gray-100 rounded-lg p-4 text-blue-800 font-mono text-lg" readonly placeholder="変換結果がここに表示されます"></textarea>
+            <textarea id="outputText" rows="4" class="w-full bg-white border border-gray-300 rounded-lg p-4 text-blue-800 font-mono text-lg shadow-sm" readonly placeholder="変換結果がここに表示されます"></textarea>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="pricing" class="py-24 px-6 bg-white border-t border-gray-100">
+    <section id="pricing" class="py-24 px-6 bg-gray-50 border-t border-gray-100">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
           <p class="text-blue-600 font-bold uppercase tracking-wide">pricing</p>
-          <h2 class="mt-3 text-4xl font-extrabold text-navy-900">
+          <h2 class="mt-3 text-4xl font-extrabold text-slate-900">
             シンプルで透明な料金プラン
           </h2>
         </div>
         
         <div class="max-w-md mx-auto bg-white p-12 rounded-3xl shadow-2xl border-4 border-blue-600 relative overflow-hidden">
           <div class="absolute top-0 right-0 bg-blue-600 text-white font-bold text-xs px-5 py-1.5 rounded-bl-xl uppercase tracking-wider">人気</div>
-          <p class="text-3xl font-extrabold text-navy-900">API利用プラン</p>
+          <p class="text-3xl font-extrabold text-slate-900">API利用プラン</p>
           <p class="mt-4 text-gray-600 leading-relaxed">
             社内システム、Webサービス、RPAなどにAPIとして組み込み、変換を完全自動化できます。
           </p>
           <div class="mt-10 flex items-end gap-1">
-            <span class="text-6xl font-extrabold text-navy-900">9,800</span>
+            <span class="text-6xl font-extrabold text-slate-900">9,800</span>
             <span class="text-xl font-bold text-gray-600">円</span>
             <span class="text-sm font-medium text-gray-500 pb-1 ml-2">/ 月（税込）</span>
           </div>
@@ -154,7 +139,7 @@
             <p>✅ 導入・運用サポート（メール）</p>
           </div>
           
-          <a href="https://buy.stripe.com/test_28E14n3RG01k0f378p6wE00" class="mt-12 block w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-4 px-10 rounded text-center text-lg transition shadow-md">
+          <a href="https://buy.stripe.com/test_28E14n3RG01k0f378p6wE00" class="mt-12 block w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-10 rounded text-center text-lg transition shadow-md">
             API利用プランを契約する
           </a>
           <p class="mt-4 text-center text-xs text-gray-400">※Stripeの決済画面（テスト用）に遷移します。</p>
@@ -163,7 +148,7 @@
     </section>
   </main>
 
-  <footer class="bg-navy-900 text-gray-300 py-20 px-6 mt-24">
+  <footer class="bg-slate-900 text-gray-300 py-20 px-6">
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-gray-800 pb-16">
         <div>
@@ -193,7 +178,7 @@
           <div>
             <p class="font-semibold text-white mb-4">会社・リーガル</p>
             <div class="flex flex-col space-y-2.5 text-sm text-gray-400">
-              <a href="https://dashboard.stripe.com/test/dashboard" target="_blank" class="hover:text-white hover:underline transition">導入相談・お問い合わせ</a>
+              <a href="https://buy.stripe.com/test_28E14n3RG01k0f378p6wE00" target="_blank" class="hover:text-white hover:underline transition">導入相談・お問い合わせ</a>
               <a href="#" class="hover:text-white hover:underline transition">利用規約（準備中）</a>
               <a href="#" class="hover:text-white hover:underline transition">プライバシーポリシー（準備中）</a>
             </div>
